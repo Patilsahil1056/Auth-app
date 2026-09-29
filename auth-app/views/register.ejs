@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create account</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body class="split">
+  <aside class="panel">
+    <h1>Create your account</h1>
+    <p>Your password is hashed before it is saved. Once you log in, a signed token and a server session keep you signed in.</p>
+  </aside>
+  <main class="form-side">
+    <form method="POST" action="/register" class="card" novalidate>
+      <h2>Register</h2>
+
+      <% if (error) { %>
+        <div class="alert error" role="alert"><%= error %></div>
+      <% } %>
+
+      <label for="name">Full name</label>
+      <input type="text" id="name" name="name" value="<%= form.name || '' %>" required autocomplete="name" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="<%= form.email || '' %>" required autocomplete="email" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" minlength="6" required autocomplete="new-password" />
+      <small>At least 6 characters.</small>
+
+      <button type="submit">Create account</button>
+      <p class="switch">Already registered? <a href="/login">Log in</a></p>
+    </form>
+  </main>
+</body>
+</html>

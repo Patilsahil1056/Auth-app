@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">auth-app</span>
+    <form method="POST" action="/logout">
+      <button type="submit" class="ghost">Log out</button>
+    </form>
+  </header>
+
+  <main class="dashboard">
+    <h1>Hello, <%= user.name %></h1>
+    <p class="lead">You are signed in. This page is only available with a valid token and an active session.</p>
+
+    <section class="details">
+      <h2>Your account</h2>
+      <dl>
+        <dt>Name</dt><dd><%= user.name %></dd>
+        <dt>Email</dt><dd><%= user.email %></dd>
+        <dt>Member since</dt><dd><%= user.createdAt.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) %></dd>
+      </dl>
+    </section>
+
+    <section class="details">
+      <h2>Authentication status</h2>
+      <dl>
+        <dt>Session</dt><dd>Active</dd>
+        <dt>JWT (first 40 characters)</dt><dd class="token"><%= tokenPreview %></dd>
+        <dt>JWT expires</dt><dd><%= expiresAt.toLocaleString('en-IN') %></dd>
+      </dl>
+    </section>
+  </main>
+</body>
+</html>
